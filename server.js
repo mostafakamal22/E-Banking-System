@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
-
 const expressLayouts = require("express-ejs-layouts");
+const bodyParser = require("body-parser");
 
 const app = express();
 
@@ -15,6 +15,8 @@ app.set("layout", "layouts/layout");
 app.use(expressLayouts);
 //application main folder
 app.use(express.static("public"));
+//use body parser middleware
+app.use(bodyParser.urlencoded({ extended: false }));
 
 //use mongodb
 const mongoose = require("mongoose");
@@ -31,5 +33,10 @@ mongoose
 const indexRouter = require("./routes/index");
 
 app.use("/", indexRouter);
+
+///    Users Router  ///
+const usersRouter = require("./routes/users");
+
+app.use("/users", usersRouter);
 
 app.listen(process.env.Port || 3000, () => console.log("server running..."));

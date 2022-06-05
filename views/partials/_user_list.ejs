@@ -1,0 +1,8 @@
+<% if (!Array.isArray(user)) { %> id: <%= user._id %> name: <%= user.name %>
+email: <%= user.email %> phone: <%= user.phone %> <% } %> <% if
+(Array.isArray(user)) { %> <% user.forEach(element => { %>
+<br />
+id: <%= element._id %> name: <%= element.name %> email: <%= element.email %>
+phone: <%= element.phone %>
+<br />
+<% }) %> <% } %>
